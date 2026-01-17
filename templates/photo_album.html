@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central Travel Photo Album</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      color: #2c3e50;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* --- Masonry layout --- */
+    .photo-gallery {
+      column-count: 4;
+      column-gap: 20px;
+    }
+
+    /* 6tadan kam rasm bo'lsa - bir qator */
+    .photo-gallery.few-images {
+      column-count: 1;
+    }
+
+    .gallery-item {
+      margin-bottom: 20px;
+      break-inside: avoid;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.03);
+    }
+
+    /* --- Modal Styles --- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      animation: zoomIn 0.3s ease;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: auto;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 20px;
+      display: block;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.1);
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev-btn {
+      left: 20px;
+    }
+
+    .next-btn {
+      right: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+      border-top: 1px solid #e0e0e0;
+      color: #7f8c8d;
+    }
+
+    /* --- Animations --- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1200px) {
+      .photo-gallery { column-count: 3; column-gap: 18px; }
+      .photo-gallery.few-images { column-count: 1; }
+    }
+
+    @media (max-width: 992px) {
+      .photo-gallery { column-count: 3; column-gap: 15px; }
+      .photo-gallery.few-images { column-count: 1; }
+      .gallery-item { margin-bottom: 15px; }
+    }
+
+    /* 📱 Mobile - 2 columns */
+    @media (max-width: 768px) {
+      .photo-gallery { column-count: 2; column-gap: 12px; }
+      .photo-gallery.few-images { column-count: 1; }
+      .gallery-item { margin-bottom: 12px; border-radius: 12px; }
+      h1 { font-size: 2.2rem; }
+      
+      .modal-content {
+        max-width: 95%;
+        max-height: 95%;
+      }
+      
+      .nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+      
+      .close-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* 📱 Small phones - 2 columns */
+    @media (max-width: 480px) {
+      .photo-gallery { column-count: 2; column-gap: 8px; }
+      .photo-gallery.few-images { column-count: 1; }
+      .gallery-item { margin-bottom: 10px; border-radius: 10px; }
+      h1 { font-size: 2rem; }
+      
+      .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      
+      .close-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+    }
+
+    /* 🔹 Very small screens - 3 columns */
+    @media (max-width: 360px) {
+      .photo-gallery { column-count: 3; column-gap: 6px; }
+      .photo-gallery.few-images { column-count: 1; }
+      .gallery-item { margin-bottom: 8px; border-radius: 8px; }
+      h1 { font-size: 1.8rem; }
+    }
+
+    /* Loading animation */
+    .gallery-img {
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+
+    <div class="photo-gallery" id="photoGallery">
+      {% for photo in photos %}
+      <div class="gallery-item" onclick="openModal({{ forloop.counter0 }})">
+        <img 
+          src="{{ photo.image.url }}" 
+          alt="{{ photo.title }}" 
+          class="gallery-img"
+          loading="lazy"
+        >
+      </div>
+      {% empty %}
+      <div style="text-align:center; margin-top:40px; grid-column: 1 / -1;">
+        <p style="font-size: 1.2rem; color: #7f8c8d;">Hozircha rasm mavjud emas 📷</p>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="imageModal">
+    <button class="close-btn" onclick="closeModal()">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <button class="nav-btn prev-btn" onclick="changeImage(-1)">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    
+    <button class="nav-btn next-btn" onclick="changeImage(1)">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    
+    <div class="modal-content">
+      <img id="modalImage" class="modal-img" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    let currentImageIndex = 0;
+    const images = [];
+    
+    // Rasmlarni JavaScript arrayga yig'ish va layoutni sozlash
+    document.addEventListener('DOMContentLoaded', function() {
+      const gallery = document.getElementById('photoGallery');
+      const galleryItems = document.querySelectorAll('.gallery-item img');
+      
+      // Rasmlarni arrayga saqlash
+      galleryItems.forEach(img => {
+        images.push(img.src);
+      });
+      
+      // Rasm soniga qarab layoutni sozlash (faqat 6tadan kam bo'lsa)
+      const imageCount = images.length;
+      
+      if (imageCount <= 6) {
+        gallery.classList.add('few-images');
+      }
+      // 6tadan ko'p bo'lsa oddiy masonry layout
+    });
+
+    function openModal(index) {
+      currentImageIndex = index;
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      
+      modalImg.src = images[currentImageIndex];
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      
+      // Chegaralarni tekshirish
+      if (currentImageIndex >= images.length) {
+        currentImageIndex = 0;
+      } else if (currentImageIndex < 0) {
+        currentImageIndex = images.length - 1;
+      }
+      
+      document.getElementById('modalImage').src = images[currentImageIndex];
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('imageModal');
+      if (!modal.classList.contains('active')) return;
+      
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+    });
+
+    // Modal tashqarisini bosganda yopish
+    document.getElementById('imageModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Touch events for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.getElementById('modalImage').addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.getElementById('modalImage').addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      
+      if (touchEndX < touchStartX - swipeThreshold) {
+        changeImage(1); // Swipe left - next image
+      }
+      
+      if (touchEndX > touchStartX + swipeThreshold) {
+        changeImage(-1); // Swipe right - previous image
+      }
+    }
+  </script>
+</body>
+</html>

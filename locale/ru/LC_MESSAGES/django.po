@@ -1,0 +1,314 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-15 15:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\templates\main\index.html:1041
+msgid "Logo"
+msgstr "Logo"
+
+#: .\templates\main\index.html:1044
+msgid "Central Travel"
+msgstr "Central Travel"
+
+#: .\templates\main\index.html:1045 .\templates\main\index.html:1327
+msgid "Professional Sayyohlik Agentligi"
+msgstr "Профессиональное туристическое агентство"
+
+#: .\templates\main\index.html:1055 .\templates\main\index.html:1072
+msgid "Uy"
+msgstr "Дом"
+
+#: .\templates\main\index.html:1056 .\templates\main\index.html:1073
+#: .\templates\main\index.html:1149 .\templates\main\index.html:1337
+msgid "Biz Haqimizda"
+msgstr "О нас"
+
+#: .\templates\main\index.html:1057 .\templates\main\index.html:1074
+#: .\templates\main\index.html:1338
+msgid "Parvozlar"
+msgstr "Рейсы"
+
+#: .\templates\main\index.html:1058 .\templates\main\index.html:1075
+#: .\templates\main\index.html:1339
+msgid "Xizmatlar"
+msgstr "Услуги"
+
+#: .\templates\main\index.html:1059 .\templates\main\index.html:1076
+#: .\templates\main\index.html:1207 .\templates\main\index.html:1340
+msgid "Bog'lanish"
+msgstr "Связь"
+
+#: .\templates\main\index.html:1060
+msgid "Direktor"
+msgstr "Директор"
+
+#: .\templates\main\index.html:1065 .\templates\main\index.html:1078
+msgid "Qo'ng'iroq qiling"
+msgstr "Вызов"
+
+#: .\templates\main\index.html:1087
+msgid "Central Travel - Ishonch va Tajriba"
+msgstr "Central Travel - Доверие и опыт"
+
+#: .\templates\main\index.html:1088
+msgid ""
+"Biz sizga dunyoning har bir joyiga qulay va xavfsiz sayohatni tashkil "
+"qilamiz. 5 yildan ortiq tajriba, 5000 dan ortiq mamnun mijozlar."
+msgstr ""
+"Мы организуем для вас комфортное и безопасное путешествие в любую точку "
+"мира. Более 5 лет опыта, более 5000 довольных клиентов."
+
+#: .\templates\main\index.html:1090
+msgid "Parvoz Sanalarini Ko'rish"
+msgstr "Посмотреть даты рейсов"
+
+#: .\templates\main\index.html:1091
+msgid "Maslahat olish"
+msgstr "Получить консультацию"
+
+#: .\templates\main\index.html:1100
+msgid "Parvoz Sanalari"
+msgstr "Даты рейсов"
+
+#: .\templates\main\index.html:1101
+msgid ""
+"Quyidagi sanalarda mavjud parvozlar. Har bir parvoz haqida batafsil ma'lumot "
+"olish uchun sanani tanlang."
+msgstr ""
+"Доступные рейсы на следующие даты. Выберите дату, чтобы получить подробную "
+"информацию о каждом рейсе."
+
+#: .\templates\main\index.html:1115 .\templates\main\index.html:1132
+msgid "Qolgan joylar:"
+msgstr "Оставшиеся места:"
+
+#: .\templates\main\index.html:1115
+msgid "ta"
+msgstr "шт"
+
+#: .\templates\main\index.html:1116 .\templates\main\index.html:1133
+msgid "Narxi:"
+msgstr "Цена:"
+
+#: .\templates\main\index.html:1117
+msgid "Batafsil ma'lumot"
+msgstr "Узнать больше"
+
+#: .\templates\main\index.html:1129
+msgid "Sana:"
+msgstr "Дата:"
+
+#: .\templates\main\index.html:1130
+msgid "Aviakompaniya:"
+msgstr "Авиакомпания:"
+
+#: .\templates\main\index.html:1131
+msgid "Parvoz vaqti:"
+msgstr "Время полета:"
+
+#: .\templates\main\index.html:1150
+msgid "- O'zbekistonning yetakchi sayyohlik agentliklaridan biri"
+msgstr "- Одно из ведущих туристических агентств в Узбекистане"
+
+#: .\templates\main\index.html:1161
+msgid "Yillik Tajriba"
+msgstr "лет опыта"
+
+#: .\templates\main\index.html:1165
+msgid "Mamnun Mijoz"
+msgstr "довольных клиентов"
+
+#: .\templates\main\index.html:1169
+msgid "Yo'nalishlar"
+msgstr "направлений"
+
+#: .\templates\main\index.html:1175
+msgid "Bizning Jamoa"
+msgstr "Наша команда"
+
+#: .\templates\main\index.html:1185 .\templates\main\index.html:1345
+msgid "Xizmatlarimiz"
+msgstr "Наши услуги"
+
+#: .\templates\main\index.html:1186
+msgid "Bizning asosiy yo'nalishlarimiz va taklif qilayotgan xizmatlar"
+msgstr "Основные направления нашей деятельности и предлагаемые нами услуги"
+
+#: .\templates\main\index.html:1208
+msgid "Biz bilan bog'laning va bepul maslahat oling"
+msgstr "Свяжитесь с нами и получите бесплатную консультацию."
+
+#: .\templates\main\index.html:1213
+msgid "Aloqa Ma'lumotlari"
+msgstr "Контактная информация"
+
+#: .\templates\main\index.html:1220
+msgid "Asosiy Ofis"
+msgstr "Главный офис"
+
+#: .\templates\main\index.html:1221
+msgid "Andijon shahar, Istiqlol ko'chasi, 103A uy."
+msgstr "г.Андижан, улица Истиклол, дом 103А."
+
+#: .\templates\main\index.html:1230
+msgid "Telefon Raqamlar"
+msgstr "Номера телефонов"
+
+#: .\templates\main\index.html:1231
+msgid "Bosh ofis"
+msgstr "Главный офис"
+
+#: .\templates\main\index.html:1232
+msgid "Eski shahar"
+msgstr "Eski shahar"
+
+#: .\templates\main\index.html:1233
+msgid "Paxtaobod"
+msgstr "Paxtaobod"
+
+#: .\templates\main\index.html:1234
+msgid "Baliqchi"
+msgstr "Baliqchi"
+
+#: .\templates\main\index.html:1235
+msgid "Shaxrixon"
+msgstr "Shaxrixon"
+
+#: .\templates\main\index.html:1236
+msgid "Qo'rg'ontepa"
+msgstr "Qo'rg'ontepa"
+
+#: .\templates\main\index.html:1245
+msgid "Elektron Pochta"
+msgstr "Электронная почта"
+
+#: .\templates\main\index.html:1255
+msgid "Telegram Admin"
+msgstr "Администратор телеграммы"
+
+#: .\templates\main\index.html:1277
+msgid "Sayohatni bron qilish"
+msgstr "Забронировать поездку"
+
+#: .\templates\main\index.html:1281
+msgid "Ismingiz"
+msgstr "Ваше имя"
+
+#: .\templates\main\index.html:1282
+msgid "Ism familiyangiz"
+msgstr "Ваше имя и фамилия"
+
+#: .\templates\main\index.html:1286
+msgid "Telefon raqamingiz"
+msgstr "Ваш номер телефона"
+
+#: .\templates\main\index.html:1291
+msgid "Parvoz sanasi"
+msgstr "Дата полета"
+
+#: .\templates\main\index.html:1293
+msgid "Parvoz sanasini tanlang"
+msgstr "Выберите дату полета"
+
+#: .\templates\main\index.html:1303
+msgid "Qo'shimcha xabaringiz (ixtiyoriy)"
+msgstr "Ваше дополнительное сообщение (необязательно)"
+
+#: .\templates\main\index.html:1308
+msgid "Xabarni yuborish"
+msgstr "Отправить сообщение"
+
+#: .\templates\main\index.html:1330
+msgid ""
+"Biz sizga dunyoning har bir joyiga qulay va xavfsiz sayohatni tashkil "
+"qilamiz. Ishonchli, professional xizmat."
+msgstr ""
+"Мы организуем для вас комфортное и безопасное путешествие в любую точкумира. "
+"Надежное и профессиональное обслуживание."
+
+#: .\templates\main\index.html:1334
+msgid "Tezkor Havolalar"
+msgstr "Быстрые ссылки"
+
+#: .\templates\main\index.html:1336
+#, fuzzy
+msgid "Bosh Sahifa"
+msgstr "Главный офис"
+
+#: .\templates\main\index.html:1347
+#, fuzzy
+#| msgid "Turistik Safarlar"
+msgid "Umra Safarlari"
+msgstr "Туристические поездки"
+
+#: .\templates\main\index.html:1348
+#, fuzzy
+#| msgid "Parvoz Sanalari"
+msgid "Haj Safarlari"
+msgstr "Даты рейсов"
+
+#: .\templates\main\index.html:1349
+msgid "Turistik Safarlar"
+msgstr "Туристические поездки"
+
+#: .\templates\main\index.html:1350
+msgid "Visa Xizmatlari"
+msgstr "Визовые услуги"
+
+#: .\templates\main\index.html:1355
+msgid "Qo'shimcha"
+msgstr "Дополнительный"
+
+#: .\templates\main\index.html:1357
+msgid "Fotoalbom"
+msgstr "Фотоальбом"
+
+#: .\templates\main\index.html:1358
+msgid "FAQ"
+msgstr "FAQ"
+
+#: .\templates\main\index.html:1359
+msgid "Shartnoma"
+msgstr "Соглашение"
+
+#: .\templates\main\index.html:1360
+msgid "Maxfiylik siyosati"
+msgstr "политика конфиденциальности"
+
+#: .\templates\main\index.html:1366
+msgid "Xizmatlar litsenziyalangan №160740"
+msgstr "Услуги лицензированы № 160740"
+
+#: .\templates\main\index.html:1367
+msgid "Barcha huquqlar himoyalangan."
+msgstr "Все права защищены."
+
+#~ msgid "Asosiy"
+#~ msgstr "Главная"
+
+#~ msgid "Qo"
+#~ msgstr "ff"
+
+#~ msgid "Turkiyaga Safar"
+#~ msgstr "Поездка в Турцию"
+
+#~ msgid "Tailandga Safar"
+#~ msgstr "Поездка в Таиланд"

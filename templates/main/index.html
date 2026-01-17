@@ -1,0 +1,1760 @@
+<!-- templates/main/index.html -->
+{% load static i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Travel - Professional Sayyohlik Agentligi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a1931;
+            --dark-blue: #1a365d;
+            --royal-blue: #2c5282;
+            --light-blue: #4299e1;
+            --gold: #d4af37;
+            --cream: #f8f5f0;
+            --gray: #4a5568;
+            --light-gray: #e2e8f0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fafc;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation - TO'G'IRLANDI */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--navy), var(--royal-blue));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: 0.5px;
+        }
+
+        .logo-sub {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Desktop Navigation - TO'G'IRLANDI */
+        .desktop-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .desktop-nav a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .desktop-nav a:hover {
+            color: var(--light-blue);
+        }
+
+        .desktop-nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--light-blue);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .desktop-nav a:hover:after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--royal-blue), var(--light-blue));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--navy);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 25, 49, 0.85), rgba(10, 25, 49, 0.9)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 160px 0 100px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), #e6c34a);
+            color: var(--navy);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        /* Flight Dates Section */
+        .flight-dates {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 18px;
+        }
+
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .date-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .date-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .date-header {
+            background: linear-gradient(135deg, var(--navy), var(--royal-blue));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .date-day {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .date-month {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .date-body {
+            padding: 25px;
+        }
+
+        .route {
+            background-color: var(--light-gray);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--navy);
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .route i {
+            margin-right: 8px;
+            color: var(--light-blue);
+        }
+
+        .date-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--navy);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .date-btn:hover {
+            background-color: var(--royal-blue);
+        }
+
+        /* Modal for flight details - TO'G'IRLANDI */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--navy), var(--royal-blue));
+            color: white;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            color: white;
+            font-size: 24px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .flight-detail-row {
+            display: flex;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .flight-detail-label {
+            flex: 0 0 200px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .flight-detail-value {
+            flex: 1;
+            color: var(--gray);
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list i {
+            color: var(--light-blue);
+        }
+
+        /* About Us Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--cream);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+            font-size: 17px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--navy);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .about-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Contact Section - TO'G'IRLANDI */
+        .contact {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, var(--navy), var(--dark-blue));
+            color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            color: white;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .contact-details p, .contact-details a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            line-height: 1.5;
+        }
+
+        .contact-details a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--light-blue);
+            transform: translateY(-3px);
+        }
+
+        .contact-form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--light-gray);
+        }
+
+        .contact-form-container h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--navy);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--light-blue);
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+        }
+
+        /* Footer - TO'G'IRLANDI */
+        footer {
+            background-color: var(--navy);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo .logo-main {
+            color: white;
+        }
+
+        .footer-logo .logo-sub {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-logo p {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .footer-column h4 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--gold);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        .license {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Photo Album Button */
+        .photo-album-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--light-blue), var(--royal-blue));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.4);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .photo-album-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(66, 153, 225, 0.6);
+        }
+
+        /* Mobile Menu - TO'G'IRLANDI */
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 999;
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            display: block;
+        }
+        
+        .mobile-menu ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .mobile-menu li {
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 15px 0;
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--light-blue);
+        }
+
+        /* Services Section - QO'SHILDI */
+        .services {
+            padding: 100px 0;
+            background-color: var(--cream);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 35px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border-top: 4px solid var(--light-blue);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--light-blue), var(--royal-blue));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 25px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--navy);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Responsive Styles - TO'G'IRLANDI */
+        @media (max-width: 1100px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-content, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .nav-cta {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .dates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .flight-detail-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .flight-detail-label {
+                flex: none;
+            }
+            
+            .contact-info, .contact-form-container {
+                padding: 25px;
+            }
+            
+            .photo-album-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Logo rasm */
+        .logo-icon img {
+            width: 60px;               /* rasm kattaligi */
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;         /* dumaloq qilish */
+            border: 2px solid #1a73e8; /* chiroyli chegarani berish, kerak bo'lsa */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* yumshoq soya */
+        }
+        
+        /* Logo matni */
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        
+        .logo-main {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+        
+        .logo-sub {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        /* Responsive (mobil) */
+        @media (max-width: 600px) {
+            .logo {
+                gap: 10px;
+            }
+            .logo-icon img {
+                width: 45px;
+                height: 45px;
+            }
+            .logo-main {
+                font-size: 1.2rem;
+            }
+            .logo-sub {
+                font-size: 0.8rem;
+            }
+        }
+
+                /* Map Section */
+        .map-container {
+            margin-top: 50px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--light-gray);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+        }
+
+        /* Mobile uchun */
+        @media (max-width: 768px) {
+            .map-container iframe {
+                height: 320px;
+            }
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1001;
+        }
+        
+        .lang-btn {
+            padding: 6px 14px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        /* Dropdown yashirin bo'ladi */
+        .lang-dropdown {
+            display: none;
+            flex-direction: column;
+            margin-top: 5px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .lang-dropdown a {
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .lang-dropdown a:hover {
+            background: #f0f0f0;
+            color: #2c5282;
+        }
+        
+        .lang-dropdown a.active {
+            background: #2c5282;
+            color: white;
+        }
+        
+
+/* Mobile menu ichidagi switcher */
+.mobile-language-switcher {
+    display: none; /* desktopda yashirin */
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    background: #f9f9f9;
+}
+
+.mobile-lang-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mobile-lang-buttons .lang-btn {
+    padding: 10px 15px;
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #555;
+}
+
+.mobile-lang-buttons .lang-btn.active {
+    border-color: #4299e1;
+    background: #2c5282;
+    color: white;
+}
+
+/* Flag va text */
+.flag {
+    font-size: 16px;
+    margin-right: 6px;
+}
+
+.text {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+/* Mobile (768px va kichik) */
+@media (max-width: 768px) {
+    .language-switcher {
+        display: none; /* desktop switcher yashirinadi */
+    }
+
+    .mobile-language-switcher {
+        display: block; /* menu ichida ko‘rinadi */
+    }
+
+    .nav-cta {
+        display: none; /* mobile call button toggle bo‘lishi mumkin */
+    }
+}
+
+
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    background: #000;
+}
+
+#map {
+    width: 100%;
+    height: 420px;
+}
+
+/* Overlay title */
+.map-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    padding: 10px 28px;
+    background: rgba(10,25,49,0.85);
+    color: #d4af37;
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 30px;
+    letter-spacing: 1px;
+    backdrop-filter: blur(6px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #map {
+        height: 280px;
+    }
+
+    .map-title {
+        font-size: 16px;
+        padding: 8px 18px;
+    }
+}
+
+
+                    
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="{% static 'images/centraltr.png' %}" alt="{% trans 'Logo' %}">
+                </div>
+                <div class="logo-text">
+                    <div class="logo-main">{% trans "Central Travel" %}</div>
+                    <div class="logo-sub">{% trans "Professional Sayyohlik Agentligi" %}</div>
+                </div>
+            </div>
+    
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+    
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home">{% trans "Uy" %}</a></li>
+                    <li><a href="#about">{% trans "Biz Haqimizda" %}</a></li>
+                    <li><a href="#flights">{% trans "Parvozlar" %}</a></li>
+                    <li><a href="#services">{% trans "Xizmatlar" %}</a></li>
+                    <li><a href="#contact">{% trans "Bog'lanish" %}</a></li>
+                    <li><a href="/direktor/">{% trans "Direktor" %}</a></li>
+                </ul>
+            </nav>
+    
+            <button class="nav-cta" id="callUsBtn">
+                <i class="fas fa-phone-alt"></i> {% trans "Qo'ng'iroq qiling" %}
+            </button>
+
+            <div class="language-switcher">
+                <button class="lang-btn" id="langToggle">
+                    🌐 {% if LANGUAGE_CODE == 'uz' %}{% else %}{% endif %}
+                </button>
+                <div class="lang-dropdown">
+                    <a href="/uz{{ request.get_full_path|slice:'3:' }}" class="{% if LANGUAGE_CODE == 'uz' %}active{% endif %}">🇺🇿 O'zbekcha</a>
+                    <a href="/ru{{ request.get_full_path|slice:'3:' }}" class="{% if LANGUAGE_CODE == 'ru' %}active{% endif %}">🇷🇺 Русский</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#home">{% trans "Uy" %}</a></li>
+                <li><a href="#about">{% trans "Biz Haqimizda" %}</a></li>
+                <li><a href="#flights">{% trans "Parvozlar" %}</a></li>
+                <li><a href="#services">{% trans "Xizmatlar" %}</a></li>
+                <li><a href="#contact">{% trans "Bog'lanish" %}</a></li>
+                <li><a href="/direktor/">{% trans "Direktor" %}</a></li>
+                <!-- Mobile til switcher -->
+                <li class="mobile-language-switcher">
+                    <div class="mobile-lang-buttons">
+                        <a href="/uz{{ request.get_full_path|slice:'3:' }}" class="lang-btn {% if LANGUAGE_CODE == 'uz' %}active{% endif %}">O'zbekcha</a>
+                        <a href="/ru{{ request.get_full_path|slice:'3:' }}" class="lang-btn {% if LANGUAGE_CODE == 'ru' %}active{% endif %}">Русский</a>
+                    </div>
+                </li>
+                <li>
+                    <button class="nav-cta" style="width:100%; margin-top:15px; margin-bottom:10px;" id="mobileCallBtn">
+                        <i class="fas fa-phone-alt"></i> {% trans "Qo'ng'iroq qiling" %}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>{% trans "Central Travel - Ishonch va Tajriba" %}</h1>
+            <p>{% trans "Biz sizga dunyoning har bir joyiga qulay va xavfsiz sayohatni tashkil qilamiz. 5 yildan ortiq tajriba, 5000 dan ortiq mamnun mijozlar." %}</p>
+            <div class="hero-cta">
+                <a href="#flights" class="btn-primary">{% trans "Parvoz Sanalarini Ko'rish" %}</a>
+                <a href="#contact" class="btn-secondary">{% trans "Maslahat olish" %}</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flight Dates Section -->
+    <section class="flight-dates" id="flights">
+        <div class="container">
+            <div class="section-title">
+                <h2>{% trans "Parvoz Sanalari" %}</h2>
+                <p>{% trans "Quyidagi sanalarda mavjud parvozlar. Har bir parvoz haqida batafsil ma'lumot olish uchun sanani tanlang." %}</p>
+            </div>
+            
+            <div class="dates-grid">
+                {% for flight in flights %}
+                <div class="date-card">
+                    <div class="date-header">
+                        <span class="date-day">{{ flight.date|date:"d" }}</span>
+                        <span class="date-month">{{ flight.date|date:"F Y" }}</span>
+                    </div>
+                    <div class="date-body">
+                        <div class="route">
+                            <i class="fas fa-plane-departure"></i> {{ flight.from_city }} → {{ flight.to_city }}
+                        </div>
+                        <p><strong>{% trans "Qolgan joylar:" %}</strong> {{ flight.seats }} {% trans "ta" %}</p>
+                        <p><strong>{% trans "Narxi:" %}</strong> {{ flight.price }}</p>
+                        <button class="date-btn" data-flight="{{ flight.id }}">{% trans "Batafsil ma'lumot" %}</button>
+                    </div>
+                </div>
+    
+                <!-- Modal -->
+                <div class="modal" id="modal-{{ flight.id }}">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>{{ flight.from_city }} → {{ flight.to_city }}</h3>
+                            <button class="close-modal" onclick="closeModal({{ flight.id }})">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="detail-row"><span>{% trans "Sana:" %}</span><span>{{ flight.date|date:"d F Y" }}</span></div>
+                            <div class="detail-row"><span>{% trans "Aviakompaniya:" %}</span><span>{{ flight.airline }}</span></div>
+                            <div class="detail-row"><span>{% trans "Parvoz vaqti:" %}</span><span>{{ flight.duration }}</span></div>
+                            <div class="detail-row"><span>{% trans "Qolgan joylar:" %}</span><span>{{ flight.seats }}</span></div>
+                            <div class="detail-row"><span>{% trans "Narxi:" %}</span><span>{{ flight.price }}$</span></div>
+                            {% if flight.description %}
+                            <p class="flight-desc">{{ flight.description }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>          
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>{% trans "Biz Haqimizda" %}</h2>
+                <p>{% trans "- O'zbekistonning yetakchi sayyohlik agentliklaridan biri" %}</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>{{ about.title }}</h2>
+                    <p>{{ about.description }}</p>
+
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">{{ about.experience_years }}+</span>
+                            <span class="stat-label">{% trans "Yillik Tajriba" %}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">{{ about.clients }}+</span>
+                            <span class="stat-label">{% trans "Mamnun Mijoz" %}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">{{ about.destinations }}+</span>
+                            <span class="stat-label">{% trans "Yo'nalishlar" %}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="{% trans 'Bizning Jamoa' %}">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>{% trans "Xizmatlarimiz" %}</h2>
+                <p>{% trans "Bizning asosiy yo'nalishlarimiz va taklif qilayotgan xizmatlar" %}</p>
+            </div>
+            
+            <div class="services-grid">
+                {% for service in services %}
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="{{ service.icon }}"></i>
+                    </div>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                </div>
+                {% endfor %}
+            </div>            
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>{% trans "Bog'lanish" %}</h2>
+                <p>{% trans "Biz bilan bog'laning va bepul maslahat oling" %}</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>{% trans "Aloqa Ma'lumotlari" %}</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>{% trans "Asosiy Ofis" %}</h4>
+                            <p>{% trans "Andijon shahar, Istiqlol ko'chasi, 103A uy." %}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>{% trans "Telefon Raqamlar" %}</h4>
+                            <p><a href="tel:+998889832552">+998 88 983 25 52</a> ({% trans "Bosh ofis" %})</p>
+                            <p><a href="tel:+998773832525">+998 77 383 25 25</a> ({% trans "Eski shahar" %})</p>
+                            <p><a href="tel:+998942902552">+998 94 290 25 52</a> ({% trans "Paxtaobod" %})</p>
+                            <p><a href="tel:+998942902552">+998 95 623 25 52</a> ({% trans "Baliqchi" %})</p>
+                            <p><a href="tel:+998942902552">+998 99 964 25 52</a> ({% trans "Shaxrixon" %})</p>
+                            <p><a href="tel:+998942902552">+998 99 822 84 88</a> ({% trans "Qo'rg'ontepa" %})</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>{% trans "Elektron Pochta" %}</h4>
+                            <p><a href="mailto:info@centralasiatravel.uz">info@centralasiatravel.uz</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>{% trans "Telegram Admin" %}</h4>
+                            <p><a href="https://t.me/Centraladminnn" target="_blank">@Centraladminnn</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://t.me/Centraltraveluz" target="_blank" class="social-link">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.instagram.com/central_travel2525/" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/12Cf32RogN3/?mibextid=wwXIfr" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="http://www.youtube.com/@CentralTraveluz" target="_blank" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <h3>{% trans "Sayohatni bron qilish" %}</h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_name">{% trans "Ismingiz" %}</label>
+                            <input type="text" name="name" id="id_name" class="form-control" placeholder="{% trans 'Ism familiyangiz' %}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="id_phone">{% trans "Telefon raqamingiz" %}</label>
+                            <input type="tel" name="phone" id="id_phone" class="form-control" placeholder="+998 XX XXX XX XX" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="id_flight">{% trans "Parvoz sanasi" %}</label>
+                            <select name="flight" id="id_flight" class="form-control" required>
+                                <option value="">{% trans "Parvoz sanasini tanlang" %}</option>
+                                {% for flight in flights %}
+                                    <option value="{{ flight.route }} - {{ flight.date|date:'d.m.Y' }}">
+                                        {{ flight.route }} ({{ flight.date|date:"d F Y" }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="id_message">{% trans "Qo'shimcha xabaringiz (ixtiyoriy)" %}</label>
+                            <textarea name="message" id="id_message" class="form-control" rows="4"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary" style="width:100%;">
+                            <i class="fas fa-paper-plane"></i> {% trans "Xabarni yuborish" %}
+                        </button>
+                    </form>
+                </div>                
+            </div>
+        </div>
+    </section>
+
+    <div class="map-wrapper">
+        <div id="map"></div>
+    </div>
+    
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon" style="width:40px; height:40px; font-size:18px;">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <div class="logo-text">
+                            <div class="logo-main"></div>
+                            <div class="logo-sub">{% trans "Professional Sayyohlik Agentligi" %}</div>
+                        </div>
+                    </div>
+                    <p>{% trans "Biz sizga dunyoning har bir joyiga qulay va xavfsiz sayohatni tashkil qilamiz. Ishonchli, professional xizmat." %}</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>{% trans "Tezkor Havolalar" %}</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">{% trans "Bosh Sahifa" %}</a></li>
+                        <li><a href="#about">{% trans "Biz Haqimizda" %}</a></li>
+                        <li><a href="#flights">{% trans "Parvozlar" %}</a></li>
+                        <li><a href="#services">{% trans "Xizmatlar" %}</a></li>
+                        <li><a href="#contact">{% trans "Bog'lanish" %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>{% trans "Xizmatlarimiz" %}</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">{% trans "Turistik Safarlar" %}</a></li>
+                        <li><a href="#services">{% trans "Visa Xizmatlari" %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>{% trans "Qo'shimcha" %}</h4>
+                    <ul class="footer-links">
+                        <li><a href="photo-album.html" target="_blank">{% trans "Fotoalbom" %}</a></li>
+                        <li><a href="#">{% trans "FAQ" %}</a></li>
+                        <li><a href="#">{% trans "Shartnoma" %}</a></li>
+                        <li><a href="#">{% trans "Maxfiylik siyosati" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="license">{% trans "Xizmatlar litsenziyalangan №160740" %}</div>
+                <p>&copy; 2025 . {% trans "Barcha huquqlar himoyalangan." %}</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    // Mobile menyuni boshqarish
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const callUsBtn = document.getElementById('callUsBtn');
+        const mobileCallBtn = document.getElementById('mobileCallBtn');
+        
+        // Mobile menyuni ochish/yopish
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                // Hamburger ikonkasi o'zgarishi
+                const icon = this.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Telefon qilish tugmalari
+        const phoneNumbers = [
+            '+998889832552',
+            '+998773832525',
+            '+998942902552',
+            '+998956232552',
+            '+998999642552',
+            '+998998228488'
+        ];
+        
+        // Telefon qo'ng'irog'i qilish funksiyasi
+        function makeCall() {
+            // Birinchi raqamni tanlash
+            const phoneNumber = phoneNumbers[0];
+            window.location.href = `tel:${phoneNumber}`;
+        }
+        
+        // Desktop telefoni
+        if (callUsBtn) {
+            callUsBtn.addEventListener('click', makeCall);
+        }
+        
+        // Mobile telefoni
+        if (mobileCallBtn) {
+            mobileCallBtn.addEventListener('click', function() {
+                makeCall();
+                // Qo'ng'iroq qilingandan so'ng menyuni yopish
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                    // Ikoni tiklash
+                    const menuIcon = mobileMenuBtn.querySelector('i');
+                    if (menuIcon) {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                }
+            });
+        }
+        
+        // Mobile menyudagi linklarga bosilganda menyuni yopish
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Faqat sahifa ichidagi linklar uchun (boshqa sahifaga o'tkazmaydigan)
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Mobile menyuni yopish
+                        if (mobileMenu) {
+                            mobileMenu.classList.remove('active');
+                            // Ikoni tiklash
+                            const menuIcon = mobileMenuBtn.querySelector('i');
+                            if (menuIcon) {
+                                menuIcon.classList.remove('fa-times');
+                                menuIcon.classList.add('fa-bars');
+                            }
+                        }
+                        
+                        // Scroll qilish
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+                    // Boshqa sahifaga o'tishda menyuni yopish
+                    if (mobileMenu) {
+                        mobileMenu.classList.remove('active');
+                        const menuIcon = mobileMenuBtn.querySelector('i');
+                        if (menuIcon) {
+                            menuIcon.classList.remove('fa-times');
+                            menuIcon.classList.add('fa-bars');
+                        }
+                    }
+                }
+            });
+        });
+        
+        // Modal funksiyalari
+        const dateButtons = document.querySelectorAll('.date-btn');
+        dateButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const flightId = this.getAttribute('data-flight');
+                const modal = document.getElementById(`modal-${flightId}`);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Scrollni bloklash
+                }
+            });
+        });
+        
+        // Modalni yopish funksiyasi
+        function closeModal(flightId) {
+            const modal = document.getElementById(`modal-${flightId}`);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Scrollni qayta tiklash
+            }
+        }
+        
+        // Modal tashqarisiga bosilganda yopish
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Escape tugmasi bilan modalni yopish
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                modals.forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+        
+        // Contact formni boshqarish
+        const contactForm = document.querySelector('.contact-form-container form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Bu yerda formani serverga yuborish logikasi bo'ladi
+                // Hozircha oddiy alert ko'rsatamiz
+                alert('Xabaringiz yuborildi! Tez orada siz bilan bog\'lanamiz.');
+                this.reset();
+            });
+        }
+    });
+    const langToggle = document.getElementById('langToggle');
+const langDropdown = document.querySelector('.lang-dropdown');
+
+langToggle.addEventListener('click', () => {
+    langDropdown.style.display = langDropdown.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Sahifa tashqarisiga bosganda yopish
+document.addEventListener('click', (e) => {
+    if (!langToggle.contains(e.target) && !langDropdown.contains(e.target)) {
+        langDropdown.style.display = 'none';
+    }
+});
+
+
+
+</script>
+
+<script>
+    const lat = 40.7617838697233;
+    const lng = 72.35705335109633;
+
+    const map = L.map('map').setView([lat, lng], 14); 
+    // 14 — yaqinroq ko‘rinish, xohlasang 13 yoki 15 qilamiz
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup('<b>Central Travel</b>')
+        .openPopup();
+</script>
+
+
+
+</html>
